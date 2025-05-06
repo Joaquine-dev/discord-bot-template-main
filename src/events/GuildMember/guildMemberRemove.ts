@@ -1,3 +1,4 @@
+import { UserService } from "@/services/UserService";
 import DiscordBot from "@client/DiscordBot";
 import Event from "@structure/Event";
 import { Events, GuildMember, PartialGuildMember } from "discord.js";
@@ -5,7 +6,7 @@ import { Events, GuildMember, PartialGuildMember } from "discord.js";
 export default new Event({
     event: Events.GuildMemberRemove,
     run: async (client: DiscordBot, member: GuildMember | PartialGuildMember) => {
-        // TODO: Implémenter la logique de l'événement
+        await UserService.deleteUserByGuildId(client, member.guild.id, member.id);
     }
 }).toJSON();
 

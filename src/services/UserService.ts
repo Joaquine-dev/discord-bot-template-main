@@ -29,6 +29,11 @@ export class UserService {
     }
     return user;
   }
+  static async deleteUserByGuildId(client: any, guildId: string, clientId: string) {
+    const userRepository = client.database.getClient().getRepository(User);
+    await userRepository.delete({ guildId: guildId, discordId: clientId });
+    return true;
+  }
   
 
 }
