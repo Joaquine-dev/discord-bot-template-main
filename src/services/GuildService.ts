@@ -18,6 +18,15 @@ export class GuildService {
     return await guildRepository.findOne({ where: { guildId } });
   }
 
+  static async updateGuild(client: any, guildId: string, data: Partial<Guilds>) {
+    const guildRepository = client.database.getClient().getRepository(Guilds);
+    const guild = await guildRepository.findOne({ where: { guildId } });
+    if (guild) {
+      Object.assign(guild, data);
+      await guildRepository.save(guild);
+    }
+  }
+
 
   
 }

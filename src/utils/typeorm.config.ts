@@ -3,7 +3,7 @@ import { User } from "../entity/User";
 import { Guilds } from "../entity/Guilds";
 import * as dotenv from "dotenv";
 import path from "path";
-
+import { Logs } from "../entity/Logs";
 dotenv.config();
 
 export default new DataSource({
@@ -13,7 +13,7 @@ export default new DataSource({
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [User, Guilds],
+  entities: [User, Guilds, Logs],
   migrations: [path.join(__dirname, '..', 'migrations', '*.ts')],
   synchronize: false,
   logging: false,

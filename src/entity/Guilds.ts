@@ -16,6 +16,14 @@ export class Guilds {
   @Column({ type: "bigint", nullable: true })
   channelWelcome!: string;
 
+  @Column({ type: "bigint", nullable: true })
+  categoryChannelGenerator!: string;
+
+
+  @Column({ type: "bigint", nullable: true })
+  channelGenerator!: string;
+
+
 
 
 }

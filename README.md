@@ -66,20 +66,6 @@ src/
 
 ## ✨ Exemples
 
-### Ajouter une commande slash
-```typescript
-import { SlashCommandBuilder } from 'discord.js';
-import Command from '@structure/Command';
-
-export default new Command({
-  data: new SlashCommandBuilder()
-    .setName('ping')
-    .setDescription('Répond avec Pong!'),
-  run: async (client, interaction) => {
-    await interaction.reply('Pong!');
-  }
-});
-```
 
 ### Ajouter un événement
 ```typescript

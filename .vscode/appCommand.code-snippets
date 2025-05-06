@@ -17,6 +17,7 @@
             "    run: async (client: DiscordBot, interaction: Interaction) => {",
             "        if (!interaction.isChatInputCommand()) return;",
             "        if (!interaction.member) return;",
+            "        if (!interaction.guild) return;",
             "        $0",
             "    }",
             "}).toJSON();"

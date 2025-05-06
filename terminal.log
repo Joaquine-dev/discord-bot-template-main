@@ -1,25 +1,33 @@
 [34m[INFO][39m [Bot loaded].
-[90m[18:13:23][39m [33m[Warning][39m Attempting to connect to the Discord bot... (1)
-[90m[18:13:23][39m [34m[Info][39m Loaded new application command: sc-getclient.ts
-[90m[18:13:23][39m [34m[Info][39m Loaded new application command: sc-reload.ts
-[90m[18:13:23][39m [32m[OK][39m Successfully loaded 2 application commands and 0 message commands.
-[90m[18:13:23][39m [34m[Info][39m Loaded new component (type: autocomplete) : autocomplete.ts
-[90m[18:13:23][39m [34m[Info][39m Loaded new component (type: select) : select.ts
-[90m[18:13:23][39m [32m[OK][39m Successfully loaded 2 components.
-[90m[18:13:23][39m [34m[Info][39m Registering event: ready.ts with event type: ready
-[90m[18:13:23][39m [34m[Info][39m Loaded new event: ready.ts
-[90m[18:13:23][39m [34m[Info][39m Registering event: guildMemberAdd.ts with event type: guildMemberAdd
-[90m[18:13:23][39m [34m[Info][39m Loaded new event: guildMemberAdd.ts
-[90m[18:13:23][39m [34m[Info][39m Registering event: guildMemberRemove.ts with event type: guildMemberRemove
-[90m[18:13:23][39m [34m[Info][39m Loaded new event: guildMemberRemove.ts
-[90m[18:13:23][39m [34m[Info][39m Registering event: guildMemberUpdate.ts with event type: guildMemberUpdate
-[90m[18:13:23][39m [34m[Info][39m Loaded new event: guildMemberUpdate.ts
-[90m[18:13:23][39m [32m[OK][39m Successfully loaded 4 events.
-[90m[18:13:23][39m [34m[Info][39m Loaded reaction for emoji: 👍
-[90m[18:13:23][39m [32m[OK][39m Successfully loaded 1 reactions.
-[90m[18:13:24][39m [34m[Info][39m Executing once event: ready.ts
-[90m[18:13:24][39m [32m[OK][39m 🗄️ TypeORM connecté à PostgreSQL
-[90m[18:13:24][39m [33m[Warning][39m Attempting to register application commands... (this might take a while!)
-[90m[18:13:24][39m [33m[Warning][39m Toutes les commandes existantes ont été supprimées globalement.
-[90m[18:13:25][39m [32m[OK][39m Successfully registered application commands. For specific guild? Yes
-[90m[18:14:08][39m [34m[Info][39m Executing event: guildMemberUpdate.ts
+[90m[20:43:27][39m [33m[Warning][39m Attempting to connect to the Discord bot... (1)
+[90m[20:43:27][39m [34m[Info][39m Loaded new application command: sc-ban.ts
+[90m[20:43:27][39m [34m[Info][39m Loaded new application command: sc-kick.ts
+[90m[20:43:27][39m [34m[Info][39m Loaded new application command: sc-mute.ts
+[90m[20:43:27][39m [34m[Info][39m Loaded new application command: sc-setup-channel-generator.ts
+[90m[20:43:27][39m [34m[Info][39m Loaded new application command: sc-getclient.ts
+[90m[20:43:27][39m [34m[Info][39m Loaded new application command: sc-reload.ts
+[90m[20:43:27][39m [32m[OK][39m Successfully loaded 6 application commands and 0 message commands.
+[90m[20:43:27][39m [34m[Info][39m Loaded new component (type: autocomplete) : autocomplete.ts
+[90m[20:43:27][39m [34m[Info][39m Loaded new component (type: select) : select.ts
+[90m[20:43:27][39m [32m[OK][39m Successfully loaded 2 components.
+[90m[20:43:27][39m [34m[Info][39m Registering event: ready.ts with event type: ready
+[90m[20:43:27][39m [34m[Info][39m Loaded new event: ready.ts
+[90m[20:43:27][39m [34m[Info][39m Registering event: guildMemberAdd.ts with event type: guildMemberAdd
+[90m[20:43:27][39m [34m[Info][39m Loaded new event: guildMemberAdd.ts
+[90m[20:43:27][39m [34m[Info][39m Registering event: guildMemberRemove.ts with event type: guildMemberRemove
+[90m[20:43:27][39m [34m[Info][39m Loaded new event: guildMemberRemove.ts
+[90m[20:43:27][39m [34m[Info][39m Registering event: guildMemberUpdate.ts with event type: guildMemberUpdate
+[90m[20:43:27][39m [34m[Info][39m Loaded new event: guildMemberUpdate.ts
+[90m[20:43:27][39m [34m[Info][39m Registering event: VoiceStateUpdate.ts with event type: voiceStateUpdate
+[90m[20:43:27][39m [34m[Info][39m Loaded new event: VoiceStateUpdate.ts
+[90m[20:43:27][39m [32m[OK][39m Successfully loaded 5 events.
+[90m[20:43:27][39m [34m[Info][39m Loaded reaction for emoji: 👍
+[90m[20:43:27][39m [32m[OK][39m Successfully loaded 1 reactions.
+[90m[20:43:28][39m [34m[Info][39m Executing once event: ready.ts
+[90m[20:43:28][39m [32m[OK][39m 🗄️ TypeORM connecté à PostgreSQL
+[90m[20:43:28][39m [33m[Warning][39m Attempting to register application commands... (this might take a while!)
+[90m[20:43:55][39m [34m[Info][39m Executing event: VoiceStateUpdate.ts
+[90m[20:43:56][39m [34m[Info][39m Executing event: VoiceStateUpdate.ts
+[90m[20:43:58][39m [34m[Info][39m Executing event: VoiceStateUpdate.ts
+[90m[20:44:16][39m [33m[Warning][39m Toutes les commandes existantes ont été supprimées globalement.
+[90m[20:44:17][39m [32m[OK][39m Successfully registered application commands. For specific guild? Yes
