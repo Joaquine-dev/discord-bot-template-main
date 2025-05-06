@@ -22,10 +22,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - .:/app
-    ports:
-      - "3000:3000"
     environment:
       - DB_HOST=postgres
       - DB_PORT=5432
@@ -34,8 +30,6 @@ services:
       - DB_NAME=botdb
     depends_on:
       - postgres
-    command: >
-      sh -c "npm run build && npm start"
 
 volumes:
   pgdata:

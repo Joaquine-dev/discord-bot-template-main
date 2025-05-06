@@ -6,16 +6,16 @@ RUN npm install -g pnpm
 
 WORKDIR /app
 
-# Copier uniquement les fichiers de dépendances pour le cache
+# Copier les fichiers nécessaires pour installer les dépendances
 COPY package.json pnpm-lock.yaml ./
 
-# Installer les dépendances
+# Installer toutes les dépendances (y compris devDependencies)
 RUN pnpm install
 
-# Copier tout le projet (y compris src/)
+# Copier le reste du code
 COPY . .
 
-# Compiler le projet TypeScript
+# Compiler le code TypeScript avec tsup (présent en devDependency)
 RUN pnpm build
 
 # Étape 2 : Image de production
@@ -25,15 +25,15 @@ RUN npm install -g pnpm
 
 WORKDIR /app
 
-# Copier uniquement ce qui est nécessaire
+# Copier uniquement les fichiers nécessaires pour prod
 COPY package.json pnpm-lock.yaml ./
 
-# Installer seulement les dépendances de production
+# Installer uniquement les dépendances de prod
 RUN pnpm install --prod
 
-# Copier le build
+# Copier les fichiers compilés et l'environnement
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/.env ./
 
-# Lancer le bot
+# Démarrage du bot
 CMD ["node", "dist/index.js"]
