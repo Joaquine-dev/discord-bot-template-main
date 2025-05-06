@@ -1,0 +1,30 @@
+{
+    "Discord Application Command": {
+        "scope": "typescript",
+        "prefix": "msgCommand",
+        "body": [
+            "import { Message } from \"discord.js\";",
+            "import DiscordBot from \"../../client/DiscordBot\";",
+            "import MessageCommand from \"../../structure/MessageCommand\";",
+            "",
+            "module.exports = new MessageCommand({",
+            "    command: {",
+            "        name: '${1:name}',",
+            "        description: '${2:description}',",
+            "        aliases: [],",
+            "    },",
+            "    options: {},",
+            "    /**",
+            "    * ",
+            "    * @param {DiscordBot} client ",
+            "    * @param {Message} message ",
+            "    * @param {string[]} args",
+            "    */",
+            "    run: async (client: DiscordBot, message: Message, args: string[]) => {",
+            "        $0",
+            "    }",
+            "}).toJSON();"
+        ],
+        "description": "Structure d'une commande Discord.js avec TypeScript"
+    }
+}

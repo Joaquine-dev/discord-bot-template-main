@@ -1,0 +1,13 @@
+import DiscordBot from "@client/DiscordBot";
+import Event from "@structure/Event";
+
+import { Events, GuildMember } from "discord.js";
+
+export default new Event({
+    event: Events.GuildMemberAdd,
+    run: async (client: DiscordBot, member: GuildMember) => { 
+        // TODO: Implémenter la logique de l'événement
+    }
+}).toJSON();
+
+

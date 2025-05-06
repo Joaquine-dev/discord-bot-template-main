@@ -1,0 +1,26 @@
+{
+    "Discord Application Command": {
+        "scope": "typescript",
+        "prefix": "appCommand",
+        "body": [
+            "import { Interaction } from \"discord.js\";",
+            "import DiscordBot from \"../../client/DiscordBot\";",
+            "import ApplicationCommand from \"../../structure/ApplicationCommand\";",
+            "",
+            "module.exports = new ApplicationCommand({",
+            "    command: {",
+            "        name: '${1:command}',",
+            "        description: '${2:Message d\\'annonce}',",
+            "        options: [],",
+            "    },",
+            "    options: {},",
+            "    run: async (client: DiscordBot, interaction: Interaction) => {",
+            "        if (!interaction.isChatInputCommand()) return;",
+            "        if (!interaction.member) return;",
+            "        $0",
+            "    }",
+            "}).toJSON();"
+        ],
+        "description": "Structure d'une commande Discord.js avec TypeScript"
+    }
+}

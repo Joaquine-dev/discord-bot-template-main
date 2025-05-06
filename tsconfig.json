@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "commonjs",
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "removeComments": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "strictNullChecks": true,
+      "skipLibCheck": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"],
+        "@commands/*": ["src/commands/*"],
+        "@events/*": ["src/events/*"],
+        "@components/*": ["src/components/*"],
+        "@config/*": ["src/config/*"],
+        "@entity/*": ["src/entity/*"],
+        "@utils/*": ["src/utils/*"],
+        "@structure/*": ["src/structure/*"],
+        "@job/*": ["src/job/*"],
+        "@client/*": ["src/client/*"],
+        "@interfaces/*": ["src/Interfaces/*"],
+        "@migrations/*": ["src/migrations/*"],
+        "@services/*": ["src/services/*"]
+      },
+    },
+    "include": ["src/**/*.ts"]
+}

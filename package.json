@@ -1,0 +1,44 @@
+{
+  "name": "bot_discord",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsup src/index.ts --minify",
+    "migration:generate": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:generate ./src/migrations/Init",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:run",
+    "migration:revert": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:revert"
+
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@discord-player/extractor": "^4.5.1",
+    "@discordjs/builders": "^1.11.2",
+    "@keyv/sqlite": "^4.0.3",
+    "axios": "^1.9.0",
+    "colors": "^1.4.0",
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0",
+    "jsdom": "^25.0.1",
+    "keyv": "^5.3.3",
+    "mediaplex": "^0.0.9",
+    "node-cron": "^3.0.3",
+    "pg": "^8.15.6",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.22"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.15.12",
+    "@types/node-cron": "^3.0.11",
+    "@types/qs": "^6.9.18",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab"
+}

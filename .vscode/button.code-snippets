@@ -1,0 +1,25 @@
+{
+    "Discord Application Command": {
+        "scope": "typescript",
+        "prefix": "button",
+        "body": [
+            "import { GuildMember, Interaction, ButtonInteraction } from \"discord.js\";",
+            "import DiscordBot from \"../../client/DiscordBot\";",
+            "import Component from \"../../structure/Component\";",
+            "",
+            "export default new Component({",
+            "    customId: 'button-custom-id',",
+            "    type: 'button',",
+            "    /**",
+            "     * @param {DiscordBot} client ",
+            "     * @param {ButtonInteraction} interaction ",
+            "     */",
+            "    run: async (client: DiscordBot, interaction: Interaction) => {",
+            "        if (!interaction.isButton()) return;",
+            "        // ... logique supplémentaire ici ...",
+            "    }",
+            "}).toJSON();"
+        ],
+        "description": "Structure d'un modal Discord.js avec TypeScript"
+    },
+}

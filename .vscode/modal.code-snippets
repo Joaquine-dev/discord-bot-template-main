@@ -1,0 +1,25 @@
+{
+    "Discord Application Command": {
+        "scope": "typescript",
+        "prefix": "modal",
+        "body": [
+            "import { GuildMember, Interaction, ModalSubmitInteraction } from \"discord.js\";",
+            "import DiscordBot from \"../../client/DiscordBot\";",
+            "import Component from \"../../structure/Component\";",
+            "",
+            "export default new Component({",
+            "    customId: 'modal-mp',",
+            "    type: 'modal',",
+            "    /**",
+            "     * @param {DiscordBot} client ",
+            "     * @param {ModalSubmitInteraction} interaction ",
+            "     */",
+            "    run: async (client: DiscordBot, interaction: Interaction) => {",
+            "        if (!interaction.isModalSubmit()) return;",
+            "        // ... logique supplémentaire ici ...",
+            "    }",
+            "}).toJSON();"
+        ],
+        "description": "Structure d'un modal Discord.js avec TypeScript"
+    }
+}
