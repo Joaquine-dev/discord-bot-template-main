@@ -8,7 +8,10 @@
     "build": "tsup src/index.ts --minify",
     "migration:generate": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:generate ./src/migrations/Init",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:run",
-    "migration:revert": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:revert"
+    "migration:revert": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:revert --all",
+    "migration:show": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:show",
+    "migration:drop": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts schema:drop",
+    "migration:list": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:list"
 
   },
   "author": "",

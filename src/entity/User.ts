@@ -8,8 +8,14 @@ export class User {
   @Column({ unique: true, type: "bigint" })
   discordId!: string;
 
+  @Column({ type: "bigint" })
+  guildId!: string;
+
   @Column({ type: "varchar" })
   username!: string;
+
+  @Column({ type: "varchar"})
+  nickname!: string;
 
   @Column({ default: 0 , type: "bigint"})
   xp!: number;
