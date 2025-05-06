@@ -1,27 +1,39 @@
-# Étape 1 : Utiliser une image Node.js officielle avec la version 20
-FROM node:20-alpine
+# Étape 1 : Build
+FROM node:20 AS builder
 
-# Étape 2 : Définir le répertoire de travail
+# Installer pnpm
+RUN npm install -g pnpm
+
 WORKDIR /app
 
-# Étape 3 : Copier les fichiers package.json et package-lock.json (si existant)
-COPY package*.json ./
+# Copier uniquement les fichiers de dépendances pour le cache
+COPY package.json pnpm-lock.yaml ./
 
-# Étape 4 : Installer les dépendances
-RUN npm ci --only=production
+# Installer les dépendances
+RUN pnpm install
 
-# Étape 5 : Copier le reste des fichiers de l'application
+# Copier tout le projet (y compris src/)
 COPY . .
 
-# Étape 6 : Installer les dépendances de développement
-RUN npm install --only=development
+# Compiler le projet TypeScript
+RUN pnpm build
 
+# Étape 2 : Image de production
+FROM node:20-slim
 
-# Étape 8 : Construire le projet TypeScript
-RUN npm run build
+RUN npm install -g pnpm
 
-# Étape 9 : Exposer un port (facultatif)
-EXPOSE 3000
+WORKDIR /app
 
-# Étape 10 : Commande par défaut pour démarrer l'application
-CMD ["npm", "run", "start"]
+# Copier uniquement ce qui est nécessaire
+COPY package.json pnpm-lock.yaml ./
+
+# Installer seulement les dépendances de production
+RUN pnpm install --prod
+
+# Copier le build
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/.env ./
+
+# Lancer le bot
+CMD ["node", "dist/index.js"]

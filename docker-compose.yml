@@ -24,11 +24,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/app
-      - /app/node_modules
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=development
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_USER=botuser
@@ -37,7 +35,7 @@ services:
     depends_on:
       - postgres
     command: >
-      sh -c "npm run dev"
+      sh -c "npm run build && npm start"
 
 volumes:
   pgdata:

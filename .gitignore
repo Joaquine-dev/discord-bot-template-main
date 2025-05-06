@@ -4,3 +4,5 @@ node_modules
 terminal.log
 *.log
 terminal.log
+pnpm-lock.yaml
+dist
