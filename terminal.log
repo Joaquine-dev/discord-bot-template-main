@@ -1,22 +1,20 @@
 [34m[INFO][39m [Bot loaded].
-[90m[14:01:51][39m [33m[Warning][39m Attempting to connect to the Discord bot... (1)
-[90m[14:01:51][39m [34m[Info][39m Loaded new application command: sc-getclient.ts
-[90m[14:01:51][39m [34m[Info][39m Loaded new application command: sc-reload.ts
-[90m[14:01:51][39m [32m[OK][39m Successfully loaded 2 application commands and 0 message commands.
-[90m[14:01:51][39m [34m[Info][39m Loaded new component (type: autocomplete) : autocomplete.ts
-[90m[14:01:51][39m [34m[Info][39m Loaded new component (type: select) : select.ts
-[90m[14:01:51][39m [32m[OK][39m Successfully loaded 2 components.
-[90m[14:01:51][39m [34m[Info][39m Registering event: ready.ts with event type: ready
-[90m[14:01:51][39m [34m[Info][39m Loaded new event: ready.ts
-[90m[14:01:51][39m [34m[Info][39m Registering event: guildMemberAdd.ts with event type: guildMemberAdd
-[90m[14:01:51][39m [34m[Info][39m Loaded new event: guildMemberAdd.ts
-[90m[14:01:51][39m [34m[Info][39m Registering event: guildMemberRemove.ts with event type: guildMemberRemove
-[90m[14:01:51][39m [34m[Info][39m Loaded new event: guildMemberRemove.ts
-[90m[14:01:51][39m [32m[OK][39m Successfully loaded 3 events.
-[90m[14:01:51][39m [34m[Info][39m Loaded reaction for emoji: 👍
-[90m[14:01:51][39m [32m[OK][39m Successfully loaded 1 reactions.
-[90m[14:01:52][39m [34m[Info][39m Executing once event: ready.ts
-[90m[14:01:52][39m [32m[OK][39m 🗄️ TypeORM connecté à PostgreSQL
-[90m[14:01:52][39m [33m[Warning][39m Attempting to register application commands... (this might take a while!)
-[90m[14:02:43][39m [33m[Warning][39m Toutes les commandes existantes ont été supprimées globalement.
-[90m[14:02:44][39m [32m[OK][39m Successfully registered application commands. For specific guild? Yes
+[90m[15:01:19][39m [33m[Warning][39m Attempting to connect to the Discord bot... (1)
+[90m[15:01:19][39m [34m[Info][39m Loaded new application command: sc-getclient.ts
+[90m[15:01:19][39m [34m[Info][39m Loaded new application command: sc-reload.ts
+[90m[15:01:19][39m [32m[OK][39m Successfully loaded 2 application commands and 0 message commands.
+[90m[15:01:19][39m [34m[Info][39m Loaded new component (type: autocomplete) : autocomplete.ts
+[90m[15:01:19][39m [34m[Info][39m Loaded new component (type: select) : select.ts
+[90m[15:01:19][39m [32m[OK][39m Successfully loaded 2 components.
+[90m[15:01:19][39m [34m[Info][39m Registering event: ready.ts with event type: ready
+[90m[15:01:19][39m [34m[Info][39m Loaded new event: ready.ts
+[90m[15:01:19][39m [34m[Info][39m Registering event: guildMemberAdd.ts with event type: guildMemberAdd
+[90m[15:01:19][39m [34m[Info][39m Loaded new event: guildMemberAdd.ts
+[90m[15:01:19][39m [34m[Info][39m Registering event: guildMemberRemove.ts with event type: guildMemberRemove
+[90m[15:01:19][39m [34m[Info][39m Loaded new event: guildMemberRemove.ts
+[90m[15:01:19][39m [32m[OK][39m Successfully loaded 3 events.
+[90m[15:01:19][39m [34m[Info][39m Loaded reaction for emoji: 👍
+[90m[15:01:19][39m [32m[OK][39m Successfully loaded 1 reactions.
+[90m[15:01:20][39m [34m[Info][39m Executing once event: ready.ts
+[90m[15:01:20][39m [31m[Error][39m Failed to connect to the Discord bot, retrying...
+[90m[15:01:20][39m [31m[Error][39m password authentication failed for user "postgres"
