@@ -22,3 +22,4 @@
 [90m[18:13:24][39m [33m[Warning][39m Attempting to register application commands... (this might take a while!)
 [90m[18:13:24][39m [33m[Warning][39m Toutes les commandes existantes ont été supprimées globalement.
 [90m[18:13:25][39m [32m[OK][39m Successfully registered application commands. For specific guild? Yes
+[90m[18:14:08][39m [34m[Info][39m Executing event: guildMemberUpdate.ts
