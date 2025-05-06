@@ -35,7 +35,7 @@ class ComponentsHandler {
                                         this.client.collection.components.modals.set(id, component);
                                     });
                                 } else {
-                                    this.client.collection.components.modals.set(component.customId, component);
+                                    this.client.collection.components.modals.set(component.customId as string, component);
                                 }
                                 break;
                             case 'select':
@@ -44,7 +44,7 @@ class ComponentsHandler {
                                         this.client.collection.components.selects.set(id, component);
                                     });
                                 } else {
-                                    this.client.collection.components.selects.set(component.customId, component);
+                                    this.client.collection.components.selects.set(component.customId as string, component);
                                 }
                                 break;
                             case 'button':
@@ -53,7 +53,7 @@ class ComponentsHandler {
                                         this.client.collection.components.buttons.set(id, component);
                                     });
                                 } else {
-                                    this.client.collection.components.buttons.set(component.customId, component);
+                                    this.client.collection.components.buttons.set(component.customId as string, component);
                                 }
                                 break;
                             default:
