@@ -7,11 +7,7 @@ do
   sleep 2
 done
 
-#Delete et recréer la base de données
-npx ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts schema:drop
 
-# Supprimer les migrations existantes
-rm -rf ./src/migrations/*
 
 # Générer les migrations
 echo "📦 Génération des migrations..."

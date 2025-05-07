@@ -6,3 +6,4 @@ terminal.log
 terminal.log
 pnpm-lock.yaml
 dist
+*.log
