@@ -39,6 +39,10 @@ run:
 	@echo "Demarrage des services..."
 	docker-compose -f $(COMPOSE_FILE) up -d
 
+start-only-db:
+	@echo "Demarrage de la base de donnees..."
+	docker-compose -f $(COMPOSE_FILE) up -d db
+
 stop:
 	@echo "Arret des services..."
 	docker-compose -f $(COMPOSE_FILE) down

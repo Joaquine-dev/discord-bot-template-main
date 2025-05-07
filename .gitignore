@@ -7,3 +7,4 @@ terminal.log
 pnpm-lock.yaml
 dist
 *.log
+terminal.log

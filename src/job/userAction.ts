@@ -1,5 +1,4 @@
 import config from "@/config/config";
-import { Action } from "@/entity/Logs";
 import { GuildMember, PermissionFlagsBits, PermissionsBitField } from "discord.js";
 
 
