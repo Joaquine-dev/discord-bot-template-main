@@ -1,5 +1,6 @@
 
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from "typeorm";
+import { Guilds } from "./Guilds";
 
 export enum Action {
   BAN = "ban",
@@ -32,6 +33,11 @@ export class Logs {
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   createdAt!: Date;
+
+
+  @ManyToOne(() => Guilds)
+  @JoinColumn({ name: "guildId", referencedColumnName: "guildId" })
+  guild!: Guilds;
 }
 
 

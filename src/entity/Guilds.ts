@@ -1,11 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Unique } from "typeorm";
+import { Logs } from "./Logs";
 
 @Entity()
+@Unique(["guildId"])
 export class Guilds {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ type: "bigint" })
+  @Column({ type: "bigint", unique: true })
   guildId!: string;
 
   
@@ -23,6 +25,9 @@ export class Guilds {
   @Column({ type: "bigint", nullable: true })
   channelGenerator!: string;
 
+
+  @OneToMany(() => Logs, (log) => log.guild)
+  logs!: Logs[];
 
 
 

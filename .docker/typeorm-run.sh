@@ -7,7 +7,8 @@ do
   sleep 2
 done
 
-
+#DROP (ONLY DEV)
+npx ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts schema:drop
 
 # Générer les migrations
 echo "📦 Génération des migrations..."

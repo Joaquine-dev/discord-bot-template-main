@@ -3,9 +3,10 @@ import * as dotenv from "dotenv";
 import path from "path";
 import { parse } from "pg-connection-string";
 import "reflect-metadata";
-import { User } from "@/entity/User";
-import { Guilds } from "@/entity/Guilds";
-import { Logs } from "@/entity/Logs";
+import { Guilds } from "../entity/Guilds";
+import { Logs } from "../entity/Logs";
+import { User } from "../entity/User";
+
 dotenv.config();
 
 let dbConfig: any;
