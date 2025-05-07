@@ -7,6 +7,7 @@ help:
 	@echo "Commandes disponibles:"
 	@echo "  make build    - Construit les images Docker"
 	@echo "  make rebuild  - Reconstruit les images Docker"
+	@echo "  make dev      - Lance les services en mode développement"
 	@echo "  make all-logs - Affiche les logs de tous les services"
 	@echo "  make run      - Lance les services"
 	@echo "  make stop     - Arrete les services"
@@ -24,6 +25,10 @@ rebuild:
 	docker-compose -f $(COMPOSE_FILE) build --no-cache
 	docker-compose -f $(COMPOSE_FILE) up -d
 
+
+dev:
+	@echo "🚀 Lancement en mode développement (rapide, sans build complet)..."
+	docker-compose -f $(COMPOSE_FILE) up --build --no-deps -d
 
 build:
 	@echo "Construction des images Docker..."
