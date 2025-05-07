@@ -17,9 +17,8 @@ export class User {
   @Column({ type: "varchar"})
   nickname!: string;
 
-  @Column({ default: 0 , type: "bigint"})
-  xp!: number;
+  @Column({ type: "bigint", nullable: true })
+  joinDate!: number;
 
-  @Column({ default: 0 , type: "bigint"})
-  level!: number;
+
 }

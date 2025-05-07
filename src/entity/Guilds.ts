@@ -26,7 +26,7 @@ export class Guilds {
   channelGenerator!: string;
 
 
-  @OneToMany(() => Logs, (log) => log.guild)
+  @OneToMany(() => Logs, logs => logs.guild)
   logs!: Logs[];
 
 

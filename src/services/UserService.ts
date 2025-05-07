@@ -18,7 +18,8 @@ export class UserService {
         discordId: member.id,
         username: member.user.username,
         nickname: member.nickname || member.user.username,
-        guildId: member.guild.id
+        guildId: member.guild.id,
+        joinDate: member.joinedTimestamp
       });
       await userRepository.save(user);
     }
@@ -31,7 +32,7 @@ export class UserService {
         discordId: userId, 
         guildId: guildId 
       },
-      select: ["id", "discordId", "username", "nickname", "xp", "level"]
+      select: ["id", "discordId", "username", "nickname"]
     });
   }
   static async updateUser(client: any, userId: string, guildId: string, data: any) {

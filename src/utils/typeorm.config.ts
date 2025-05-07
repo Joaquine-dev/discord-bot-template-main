@@ -34,9 +34,9 @@ if (process.env.DATABASE_URL) {
 
 export default new DataSource({
   ...dbConfig,
-  entities: [User, Guilds, Logs],
+  entities: [Guilds,Logs , User],
   migrations: [path.join(__dirname, "..", "migrations", "*.{js,ts}")],
-  synchronize: false,
+  synchronize: true,
   logging: true,
   logger: "advanced-console"
 });

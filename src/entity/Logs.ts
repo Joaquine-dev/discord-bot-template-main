@@ -19,6 +19,10 @@ export class Logs {
   @Column({ type: "bigint" })
   guildId!: string;
 
+  @ManyToOne(() => Guilds, { onDelete: "CASCADE" })
+  @JoinColumn({ name: "guildId", referencedColumnName: "guildId" })
+  guild!: Guilds;
+
   @Column({ type: "bigint" })
   executorId!: string;
 
@@ -35,9 +39,7 @@ export class Logs {
   createdAt!: Date;
 
 
-  @ManyToOne(() => Guilds)
-  @JoinColumn({ name: "guildId", referencedColumnName: "guildId" })
-  guild!: Guilds;
+  
 }
 
 
