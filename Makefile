@@ -6,6 +6,8 @@ COMPOSE_FILE = docker-compose.yml
 help:
 	@echo "Commandes disponibles:"
 	@echo "  make build    - Construit les images Docker"
+	@echo "  make rebuild  - Reconstruit les images Docker"
+	@echo "  make all-logs - Affiche les logs de tous les services"
 	@echo "  make run      - Lance les services"
 	@echo "  make stop     - Arrete les services"
 	@echo "  make logs     - Affiche les logs du bot"
@@ -13,6 +15,13 @@ help:
 	@echo "  make clean    - Nettoie les conteneurs et images"
 	@echo "  make restart  - Redemarre les services"
 	@echo "  make help     - Affiche cette aide"
+
+rebuild:
+	@echo "🔁 Reconstruction complète des images Docker..."
+	docker-compose -f $(COMPOSE_FILE) down
+	docker-compose -f $(COMPOSE_FILE) build --no-cache
+	docker-compose -f $(COMPOSE_FILE) up -d
+
 
 build:
 	@echo "Construction des images Docker..."
@@ -32,7 +41,11 @@ logs:
 
 db-logs:
 	@echo "Affichage des logs de la base de données..."
-	docker-compose -f $(COMPOSE_FILE) logs -f postgres
+	docker-compose -f $(COMPOSE_FILE) logs -f db
+
+all-logs:
+	@echo "Affichage des logs de tous les services..."
+	docker-compose -f $(COMPOSE_FILE) logs -f
 
 clean:
 	@echo "Nettoyage des conteneurs et images..."

@@ -1,21 +1,41 @@
 import { DataSource } from "typeorm";
-import { User } from "../entity/User";
-import { Guilds } from "../entity/Guilds";
 import * as dotenv from "dotenv";
 import path from "path";
-import { Logs } from "../entity/Logs";
+import { parse } from "pg-connection-string";
+import "reflect-metadata";
+import { User } from "@/entity/User";
+import { Guilds } from "@/entity/Guilds";
+import { Logs } from "@/entity/Logs";
 dotenv.config();
 
+let dbConfig: any;
+
+if (process.env.DATABASE_URL) {
+  const parsed = parse(process.env.DATABASE_URL);
+  dbConfig = {
+    type: "postgres",
+    host: parsed.host,
+    port: parseInt(parsed.port || "5432"),
+    username: parsed.user,
+    password: parsed.password,
+    database: parsed.database,
+  };
+} else {
+  dbConfig = {
+    type: "postgres",
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT || "5432"),
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  };
+}
+
 export default new DataSource({
-  type: "postgres",
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT || "5432"),
-  username: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  ...dbConfig,
   entities: [User, Guilds, Logs],
-  migrations: [path.join(__dirname, '..', 'migrations', '*.ts')],
+  migrations: [path.join(__dirname, "..", "migrations", "*.{js,ts}")],
   synchronize: false,
-  logging: false,
+  logging: true,
   logger: "advanced-console"
 });

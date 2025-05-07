@@ -1,0 +1,24 @@
+# Node modules
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build files (recréés dans l'image via npm run build)
+dist
+
+# Environnement local
+.env
+.env.local
+
+# Config de l'IDE
+.vscode
+.idea
+
+# Git
+.git
+.gitignore
+
+# Autres fichiers inutiles
+.DS_Store
+*.log
+*.swp

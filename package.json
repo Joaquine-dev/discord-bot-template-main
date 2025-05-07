@@ -5,14 +5,13 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
-    "build": "tsup src/index.ts --minify",
+    "build": "tsup --config tsup.config.ts",
     "migration:generate": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:generate ./src/migrations/Init",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:run",
     "migration:revert": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:revert --all",
     "migration:show": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:show",
     "migration:drop": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts schema:drop",
     "migration:list": "ts-node ./node_modules/typeorm/cli.js --dataSource ./src/utils/typeorm.config.ts migration:list"
-
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +27,7 @@
     "mediaplex": "^0.0.9",
     "node-cron": "^3.0.3",
     "pg": "^8.15.6",
+    "pg-connection-string": "^2.8.5",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.22"
   },

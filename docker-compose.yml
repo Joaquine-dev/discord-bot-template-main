@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    depends_on:
+      - db
+    environment:
+       DATABASE_URL: postgres://bot:botpass@db:4895/botdb
+       CLIENT_TOKEN: ${CLIENT_TOKEN}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: [ "sh", "./.docker/typeorm-run.sh" ]
+  
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: botdb
+      POSTGRES_USER: bot
+      POSTGRES_PASSWORD: botpass
+      POSTGRES_PORT: 4895
+    expose:
+      - "4895" 
+    ports:
+      - "4895:4895"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    command: -p 4895
+
+volumes:
+  pgdata:

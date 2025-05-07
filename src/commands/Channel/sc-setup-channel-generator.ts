@@ -10,7 +10,7 @@ module.exports = new ApplicationCommand({
         description: 'Setup the channel generator',
     },
     options: {
-        default_member_permissions: PermissionsBitField.Flags.Administrator
+        default_member_permissions: PermissionsBitField.Flags.ManageChannels
     },
     run: async (client: DiscordBot, interaction: Interaction) => {
         if (!interaction.isChatInputCommand()) return;
