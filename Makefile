@@ -28,6 +28,7 @@ rebuild:
 
 dev:
 	@echo "🚀 Lancement en mode développement (rapide, sans build complet)..."
+	docker-compose -f $(COMPOSE_FILE) down
 	docker-compose -f $(COMPOSE_FILE) up --build --no-deps -d
 
 build:
