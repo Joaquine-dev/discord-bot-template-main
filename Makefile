@@ -7,7 +7,7 @@ help:
 	@echo "Commandes disponibles:"
 	@echo "  make build    - Construit les images Docker"
 	@echo "  make rebuild  - Reconstruit les images Docker"
-	@echo "  make dev      - Lance les services en mode développement"
+	@echo "  make dev      - Lance les services en mode developpement"
 	@echo "  make all-logs - Affiche les logs de tous les services"
 	@echo "  make run      - Lance les services"
 	@echo "  make stop     - Arrete les services"
@@ -20,14 +20,14 @@ help:
 	@echo "  make help     - Affiche cette aide"
 
 rebuild:
-	@echo "🔁 Reconstruction complète des images Docker..."
+	@echo "🔁 Reconstruction complete des images Docker..."
 	docker-compose -f $(COMPOSE_FILE) down
 	docker-compose -f $(COMPOSE_FILE) build --no-cache
 	docker-compose -f $(COMPOSE_FILE) up -d
 
 
 dev:
-	@echo "🚀 Lancement en mode développement (rapide, sans build complet)..."
+	@echo "🚀 Lancement en mode developpement (rapide, sans build complet)..."
 	docker-compose -f $(COMPOSE_FILE) down
 	docker-compose -f $(COMPOSE_FILE) up --build --no-deps -d
 
@@ -36,11 +36,11 @@ build:
 	docker-compose -f $(COMPOSE_FILE) build
 
 run:
-	@echo "Démarrage des services..."
+	@echo "Demarrage des services..."
 	docker-compose -f $(COMPOSE_FILE) up -d
 
 stop:
-	@echo "Arrêt des services..."
+	@echo "Arret des services..."
 	docker-compose -f $(COMPOSE_FILE) down
 
 logs:
@@ -48,7 +48,7 @@ logs:
 	docker-compose -f $(COMPOSE_FILE) logs -f bot
 
 db-logs:
-	@echo "Affichage des logs de la base de données..."
+	@echo "Affichage des logs de la base de donnees..."
 	docker-compose -f $(COMPOSE_FILE) logs -f db
 
 all-logs:
@@ -60,12 +60,12 @@ clean:
 	docker-compose -f $(COMPOSE_FILE) down -v --rmi all --remove-orphans
 
 restart: stop run
-	@echo "Services redémarrés avec succès" 
+	@echo "Services redemarrés avec succes" 
 
 status:
 	@echo "📦 Statut des services Docker Compose :"
 	docker-compose -f $(COMPOSE_FILE) ps
 
 stats:
-	@echo "📊 Utilisation des ressources (CPU/Mémoire) :"
+	@echo "📊 Utilisation des ressources (CPU/Memoire) :"
 	docker stats $(docker-compose -f $(COMPOSE_FILE) ps -q)
