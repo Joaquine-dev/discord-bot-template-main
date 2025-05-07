@@ -14,6 +14,8 @@ help:
 	@echo "  make db-logs  - Affiche les logs de la base de donnees"
 	@echo "  make clean    - Nettoie les conteneurs et images"
 	@echo "  make restart  - Redemarre les services"
+	@echo "  make status   - Affiche le statut (uptime) des services"
+	@echo "  make stats    - Affiche l'utilisation des ressources (CPU/RAM)"
 	@echo "  make help     - Affiche cette aide"
 
 rebuild:
@@ -53,3 +55,11 @@ clean:
 
 restart: stop run
 	@echo "Services redémarrés avec succès" 
+
+status:
+	@echo "📦 Statut des services Docker Compose :"
+	docker-compose -f $(COMPOSE_FILE) ps
+
+stats:
+	@echo "📊 Utilisation des ressources (CPU/Mémoire) :"
+	docker stats $(docker-compose -f $(COMPOSE_FILE) ps -q)
