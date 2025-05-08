@@ -9,207 +9,98 @@ import {
     TextInputStyle,
     TextChannel,
     StringSelectMenuBuilder,
-    StringSelectMenuOptionBuilder
+    StringSelectMenuOptionBuilder,
+    PermissionFlagsBits,
+    Message
 } from "discord.js";
 import DiscordBot from "@client/DiscordBot";
 import ApplicationCommand from "@structure/ApplicationCommand";
+import UserAction from "@job/userAction";
 
 module.exports = new ApplicationCommand({
     command: {
         name: 'embed-editor',
-        description: 'Éditer un embed existant',
-        options: [],
+        description: 'Éditeur d\'embed interactif',
+        options: [
+            {
+                name: 'message_id',
+                description: 'ID du message contenant l\'embed à éditer',
+                type: 3,
+                required: true
+            }
+        ],
     },
     options: {},
     run: async (client: DiscordBot, interaction: Interaction) => {
         if (!interaction.isChatInputCommand()) return;
+        if (!interaction.guild) return;
 
-        const embedData = {
-            title: '',
-            description: '',
-            color: '#2F3136',
-            image: null as string | null,
-            thumbnail: null as string | null
-        };
+        // Vérification des permissions
+        if (!interaction.memberPermissions?.has(PermissionFlagsBits.ManageMessages)) {
+            await interaction.reply({
+                content: '❌ Vous n\'avez pas la permission d\'utiliser cette commande.',
+                ephemeral: true
+            });
+            return;
+        }
 
-        const buildEmbed = () => new EmbedBuilder()
-            .setTitle(embedData.title)
-            .setDescription(embedData.description)
-            .setColor(embedData.color as `#${string}`)
-            .setImage(embedData.image ?? null)
-            .setThumbnail(embedData.thumbnail ?? null)
-            .setFooter({ text: 'Éditeur d\'Embed • ' + interaction.user.tag });
+        const messageId = interaction.options.getString('message_id');
+        if (!messageId) {
+            await interaction.reply({
+                content: '❌ Veuillez spécifier l\'ID du message à éditer.',
+                ephemeral: true
+            });
+            return;
+        }
 
-        const row1 = new ActionRowBuilder<ButtonBuilder>()
-            .addComponents(
-                new ButtonBuilder().setCustomId('edit-title').setLabel('Titre').setStyle(ButtonStyle.Primary),
-                new ButtonBuilder().setCustomId('edit-description').setLabel('Description').setStyle(ButtonStyle.Primary),
-                new ButtonBuilder().setCustomId('edit-image').setLabel('Image').setStyle(ButtonStyle.Primary),
-                new ButtonBuilder().setCustomId('edit-thumbnail').setLabel('thumbnail').setStyle(ButtonStyle.Primary),
-            );
-
-        const row2 = new ActionRowBuilder<StringSelectMenuBuilder>()
-            .addComponents(
-                new StringSelectMenuBuilder()
-                    .setCustomId('select-color')
-                    .setPlaceholder('Choisissez une couleur')
-                    .addOptions([
-                        { label: 'Rouge', value: '#FF0000', emoji: '🔴' },
-                        { label: 'Vert', value: '#00FF00', emoji: '🟢' },
-                        { label: 'Bleu', value: '#0000FF', emoji: '🔵' },
-                        { label: 'Jaune', value: '#FFFF00', emoji: '🟡' },
-                        { label: 'Violet', value: '#800080', emoji: '🟣' }
-                    ])
-            );
-
-        const row3 = new ActionRowBuilder<ButtonBuilder>()
-            .addComponents(
-                new ButtonBuilder().setCustomId('preview').setLabel('Aperçu').setStyle(ButtonStyle.Secondary),
-                new ButtonBuilder().setCustomId('send').setLabel('Envoyer').setStyle(ButtonStyle.Success),
-                new ButtonBuilder().setCustomId('reset').setLabel('Réinitialiser').setStyle(ButtonStyle.Danger)
-            );
-
-        await interaction.reply({
-            content: 'Répondez à un message contenant un embed pour l\'éditer.',
-            ephemeral: true
-        });
-
-        const filter = (m: any) => m.author.id === interaction.user.id;
-        const collector = (interaction.channel as TextChannel).createMessageCollector({ filter, time: 30000, max: 1 });
-
-        collector?.on('collect', async (message) => {
-            const targetEmbed = message.reference?.messageId;
-            if (!targetEmbed) {
-                await interaction.editReply({ content: 'Aucun embed trouvé dans le message référencé.' });
+        try {
+            const message = await interaction.channel?.messages.fetch(messageId);
+            if (!message) {
+                await interaction.reply({
+                    content: '❌ Message non trouvé.',
+                    ephemeral: true
+                });
                 return;
             }
 
-            const referencedMessage = await message.channel.messages.fetch(targetEmbed);
-            const embed = referencedMessage.embeds[0];
-
+            const embed = message.embeds[0];
             if (!embed) {
-                await interaction.editReply({ content: 'Aucun embed trouvé dans le message référencé.' });
+                await interaction.reply({
+                    content: '❌ Ce message ne contient pas d\'embed.',
+                    ephemeral: true
+                });
                 return;
             }
 
-            embedData.title = embed.title || '';
-            embedData.description = embed.description || '';
-            embedData.color = embed.color ? `#${embed.color.toString(16).padStart(6, '0')}` : '#2F3136';
-            embedData.image = embed.image?.url || null;
-            embedData.thumbnail = embed.thumbnail?.url || null;
+            const embedData = {
+                title: embed.title || '',
+                description: embed.description || '',
+                color: embed.color ? `#${embed.color.toString(16).padStart(6, '0')}` : '#2F3136',
+                image: embed.image?.url || null,
+                thumbnail: embed.thumbnail?.url || null,
+                author: {
+                    name: embed.author?.name || '',
+                    iconURL: embed.author?.iconURL || null
+                },
+                footer: {
+                    text: embed.footer?.text || '',
+                    iconURL: embed.footer?.iconURL || null
+                },
+                fields: embed.fields.map(field => ({
+                    name: field.name,
+                    value: field.value,
+                    inline: field.inline ?? false
+                })),
+                messageId: message.id
+            };
 
-            await interaction.editReply({
-                content: 'Embed chargé avec succès. Utilisez les boutons ci-dessous pour le modifier.',
-                embeds: [buildEmbed()],
-                components: [row1, row2, row3]
+            const userAction = new UserAction(client, interaction, embedData);
+            await userAction.start();
+        } catch (error) {
+            await interaction.reply({
+                content: '❌ Une erreur est survenue lors de la récupération du message.',
+                ephemeral: true
             });
-
-            const buttonCollector = interaction.channel?.createMessageComponentCollector({
-                filter: i => i.user.id === interaction.user.id,
-                time: 600_000
-            });
-
-            buttonCollector?.on('collect', async i => {
-                if (i.isButton()) {
-                    const modal = new ModalBuilder().setCustomId(`modal-${i.customId}`).setTitle('Modification');
-
-                    switch (i.customId) {
-                        case 'edit-title':
-                            modal.addComponents(new ActionRowBuilder<TextInputBuilder>().addComponents(
-                                new TextInputBuilder()
-                                    .setCustomId('title')
-                                    .setLabel('Nouveau titre')
-                                    .setStyle(TextInputStyle.Short)
-                                    .setValue(embedData.title)
-                            ));
-                            await i.showModal(modal);
-                            break;
-                        case 'edit-description':
-                            modal.addComponents(new ActionRowBuilder<TextInputBuilder>().addComponents(
-                                new TextInputBuilder()
-                                    .setCustomId('description')
-                                    .setLabel('Nouvelle description')
-                                    .setStyle(TextInputStyle.Paragraph)
-                                    .setValue(embedData.description)
-                            ));
-                            await i.showModal(modal);
-                            break;
-                        case 'edit-image':
-                            modal.addComponents(new ActionRowBuilder<TextInputBuilder>().addComponents(
-                                new TextInputBuilder()
-                                    .setCustomId('image')
-                                    .setLabel('URL de l\'image')
-                                    .setStyle(TextInputStyle.Short)
-                                    .setValue(embedData.image ?? '')
-                            ));
-                            await i.showModal(modal);
-                            break;
-                        case 'edit-thumbnail':
-                            modal.addComponents(new ActionRowBuilder<TextInputBuilder>().addComponents(
-                                new TextInputBuilder()
-                                    .setCustomId('thumbnail')
-                                    .setLabel('URL de la thumbnail')
-                                    .setStyle(TextInputStyle.Short)
-                                    .setValue(embedData.thumbnail ?? '')
-                            ));
-                            await i.showModal(modal);
-                            break;
-                        case 'preview':
-                            await i.reply({ embeds: [buildEmbed()], ephemeral: true });
-                            break;
-                        case 'send':
-                            await referencedMessage.edit({ embeds: [buildEmbed()] });
-                            await i.reply({ content: 'Embed modifié avec succès !', ephemeral: true });
-                            break;
-                        case 'reset':
-                            embedData.title = embed.title || '';
-                            embedData.description = embed.description || '';
-                            embedData.color = embed.color ? `#${embed.color.toString(16).padStart(6, '0')}` : '#2F3136';
-                            embedData.image = embed.image?.url || null;
-                            embedData.thumbnail = embed.thumbnail?.url || null;
-                            await i.update({ embeds: [buildEmbed()], components: [row1, row2, row3] });
-                            break;
-                    }
-                } else if (i.isStringSelectMenu() && i.customId === 'select-color') {
-                    embedData.color = i.values[0];
-                    await i.update({ embeds: [buildEmbed()], components: [row1, row2, row3] });
-                }
-            });
-
-            interaction.client.on('interactionCreate', async modal => {
-                if (!modal.isModalSubmit()) return;
-                if (modal.user.id !== interaction.user.id) return;
-
-                const id = modal.customId.replace('modal-', '');
-
-                switch (id) {
-                    case 'edit-title':
-                        embedData.title = modal.fields.getTextInputValue('title');
-                        break;
-                    case 'edit-description':
-                        embedData.description = modal.fields.getTextInputValue('description');
-                        break;
-                    case 'edit-image':
-                        embedData.image = modal.fields.getTextInputValue('image') || null;
-                        break;
-                    case 'edit-thumbnail':
-                        embedData.thumbnail = modal.fields.getTextInputValue('thumbnail') || null;
-                        break;
-                }
-
-                await modal.reply({ content: 'Modification enregistrée.', ephemeral: true });
-                await interaction.editReply({ embeds: [buildEmbed()], components: [row1, row2, row3] });
-            });
-
-            buttonCollector?.on('end', async () => {
-                await interaction.editReply({ components: [] });
-            });
-        });
-
-        collector?.on('end', async (collected) => {
-            if (collected.size === 0) {
-                await interaction.editReply({ content: 'Temps écoulé. Aucun message n\'a été sélectionné.' });
-            }
-        });
+        }
     }
 }).toJSON();
