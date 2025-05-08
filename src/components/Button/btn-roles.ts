@@ -1,4 +1,4 @@
-import { Interaction, ButtonInteraction, GuildMember } from "discord.js";
+import { Interaction, GuildMember } from "discord.js";
 import DiscordBot from "@client/DiscordBot";
 import Component from "@structure/Component";
 

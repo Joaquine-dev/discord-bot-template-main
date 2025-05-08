@@ -1,5 +1,6 @@
 import { REST, Routes, RESTOptions } from 'discord.js';
-import { readdirSync } from 'fs';
+import { readdirSync, statSync } from 'fs';
+import { join, resolve } from 'path';
 import DiscordBot from '@client/DiscordBot';
 import ApplicationCommand from '@structure/ApplicationCommand';
 import MessageCommand from '@structure/MessageCommand';
@@ -12,46 +13,65 @@ class CommandsHandler {
         this.client = client;
     }
 
+    private getAllCommandFiles(dir: string): string[] {
+        const result: string[] = [];
+
+        for (const item of readdirSync(dir)) {
+            const fullPath = join(dir, item);
+            const stats = statSync(fullPath);
+
+            if (stats.isDirectory()) {
+                result.push(...this.getAllCommandFiles(fullPath));
+            } else if (stats.isFile() && fullPath.endsWith('.ts')) {
+                result.push(fullPath);
+            }
+        }
+
+        return result;
+    }
+
     load = (): void => {
-      
-        for (const directory of readdirSync('./src/commands/')) {
-            for (const file of readdirSync(`./src/commands/${directory}`).filter((f) => f.endsWith('.ts'))) {
-                try {
-                    const module: ApplicationCommand['data'] | MessageCommand['data'] = require(`../../commands/${directory}/${file}`);
-               
-                    if (!module) continue;
+        const commandFiles = this.getAllCommandFiles('./src/commands');
 
-                    if (module.__type__ === 2) {
-                        if (!module.command || !module.run) {
-                            error(`Unable to load the message command ${file}`);
-                            continue;
-                        }
+        for (const fullPath of commandFiles) {
+            const relativePath = fullPath.replace(/^.*\/src\/commands\//, ''); // pour affichage/logging
 
-                        this.client.collection.message_commands.set(module.command.name, module);
+            try {
+                const module: ApplicationCommand['data'] | MessageCommand['data'] = require(resolve(fullPath));
 
-                        if ('aliases' in module.command && Array.isArray(module.command.aliases)) {
-                            module.command.aliases.forEach((alias: string) => {
-                                this.client.collection.message_commands_aliases.set(alias, module.command.name);
-                            });
-                        }
+                if (!module) continue;
 
-                        info(`Loaded new message command: ${file}`);
-                    } else if (module.__type__ === 1) {
-                        if (!module.command || !module.run) {
-                            error(`Unable to load the application command ${file}`);
-                            continue;
-                        }
-
-                        this.client.collection.application_commands.set(module.command.name, module);
-                        this.client.rest_application_commands_array.push(module.command);
-
-                        info(`Loaded new application command: ${file}`);
-                    } else {
-                        error(`Invalid command type ${module.__type__} from command file ${file}`);
+                if (module.__type__ === 2) {
+                    if (!module.command || !module.run) {
+                        error(`Unable to load the message command ${relativePath}`);
+                        continue;
                     }
-                } catch {
-                    error(`Unable to load a command from the path: src/commands/${directory}/${file}`);
+
+                    this.client.collection.message_commands.set(module.command.name, module);
+
+                    if ('aliases' in module.command && Array.isArray(module.command.aliases)) {
+                        module.command.aliases.forEach((alias: string) => {
+                            this.client.collection.message_commands_aliases.set(alias, module.command.name);
+                        });
+                    }
+
+                    info(`Loaded new message command: ${relativePath}`);
+                } else if (module.__type__ === 1) {
+                    if (!module.command || !module.run) {
+                        error(`Unable to load the application command ${relativePath}`);
+                        continue;
+                    }
+
+                    this.client.collection.application_commands.set(module.command.name, module);
+                    this.client.rest_application_commands_array.push(module.command);
+
+                    info(`Loaded new application command: ${relativePath}`);
+                } else {
+                    error(`Invalid command type ${module.__type__} from command file ${relativePath}`);
                 }
+            } catch (err) {
+                error(`Unable to load a command from the path: ${fullPath}`);
+                console.error(err);
             }
         }
 
@@ -66,7 +86,7 @@ class CommandsHandler {
 
         this.load();
     }
-    
+
     registerApplicationCommands = async (
         development: { enabled: boolean; guildId: string },
         restOptions: Partial<RESTOptions> | null = null

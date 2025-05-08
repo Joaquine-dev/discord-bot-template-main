@@ -1,35 +1,49 @@
 [34m[INFO][39m [Bot loaded].
-[90m[14:53:49][39m [33m[Warning][39m Attempting to connect to the Discord bot... (1)
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-ban.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-kick.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-mute.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-ping.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-server-info.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-add-btn-roles.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-delete-btn-roles.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-lock-channel.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-setup-channel-generator.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-getclient.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-reload.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-user-info.ts
-[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-view-avatar.ts
-[90m[14:53:49][39m [32m[OK][39m Successfully loaded 13 application commands and 0 message commands.
-[90m[14:53:49][39m [34m[Info][39m Loaded new component (type: button) : roles.ts
-[90m[14:53:49][39m [32m[OK][39m Successfully loaded 1 components.
-[90m[14:53:49][39m [34m[Info][39m Registering event: ready.ts with event type: ready
-[90m[14:53:49][39m [34m[Info][39m Loaded new event: ready.ts
-[90m[14:53:49][39m [34m[Info][39m Registering event: guildMemberAdd.ts with event type: guildMemberAdd
-[90m[14:53:49][39m [34m[Info][39m Loaded new event: guildMemberAdd.ts
-[90m[14:53:49][39m [34m[Info][39m Registering event: guildMemberRemove.ts with event type: guildMemberRemove
-[90m[14:53:49][39m [34m[Info][39m Loaded new event: guildMemberRemove.ts
-[90m[14:53:49][39m [34m[Info][39m Registering event: guildMemberUpdate.ts with event type: guildMemberUpdate
-[90m[14:53:49][39m [34m[Info][39m Loaded new event: guildMemberUpdate.ts
-[90m[14:53:49][39m [34m[Info][39m Registering event: VoiceStateUpdate.ts with event type: voiceStateUpdate
-[90m[14:53:49][39m [34m[Info][39m Loaded new event: VoiceStateUpdate.ts
-[90m[14:53:49][39m [32m[OK][39m Successfully loaded 5 events.
-[90m[14:53:49][39m [32m[OK][39m Successfully loaded 0 reactions.
-[90m[14:53:50][39m [34m[Info][39m Executing once event: ready.ts
-[90m[14:53:50][39m [32m[OK][39m 🗄️ TypeORM connecté à PostgreSQL
-[90m[14:53:50][39m [33m[Warning][39m Attempting to register application commands... (this might take a while!)
-[90m[14:53:50][39m [33m[Warning][39m Toutes les commandes existantes ont été supprimées globalement.
-[90m[14:53:50][39m [32m[OK][39m Successfully registered application commands. For specific guild? Yes
+[90m[16:37:57][39m [33m[Warning][39m Attempting to connect to the Discord bot... (1)
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Admin\sc-ban.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Admin\sc-kick.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Admin\sc-mute.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Basique\sc-ping.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Basique\sc-server-info.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Button\Roles\sc-add-btn-roles.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Button\Roles\sc-delete-btn-roles.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Channel\sc-lock-channel.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Channel\sc-setup-channel-generator.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Developper\sc-getclient.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Developper\sc-reload.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Users\sc-user-info.ts
+[90m[16:37:57][39m [34m[Info][39m Loaded new application command: src\commands\Users\sc-view-avatar.ts
+[90m[16:37:57][39m [32m[OK][39m Successfully loaded 13 application commands and 0 message commands.
+[90m[16:37:57][39m [34m[Info][39m Loaded new component (type: button) : btn-roles.ts
+[90m[16:37:57][39m [32m[OK][39m Successfully loaded 1 components.
+[90m[16:37:57][39m [34m[Info][39m Registering event: ready.ts with event type: ready
+[90m[16:37:57][39m [34m[Info][39m Loaded new event: ready.ts
+[90m[16:37:57][39m [34m[Info][39m Registering event: guildMemberAdd.ts with event type: guildMemberAdd
+[90m[16:37:57][39m [34m[Info][39m Loaded new event: guildMemberAdd.ts
+[90m[16:37:57][39m [34m[Info][39m Registering event: guildMemberRemove.ts with event type: guildMemberRemove
+[90m[16:37:57][39m [34m[Info][39m Loaded new event: guildMemberRemove.ts
+[90m[16:37:57][39m [34m[Info][39m Registering event: guildMemberUpdate.ts with event type: guildMemberUpdate
+[90m[16:37:57][39m [34m[Info][39m Loaded new event: guildMemberUpdate.ts
+[90m[16:37:57][39m [34m[Info][39m Registering event: VoiceStateUpdate.ts with event type: voiceStateUpdate
+[90m[16:37:57][39m [34m[Info][39m Loaded new event: VoiceStateUpdate.ts
+[90m[16:37:57][39m [32m[OK][39m Successfully loaded 5 events.
+[90m[16:37:57][39m [32m[OK][39m Successfully loaded 0 reactions.
+[90m[16:37:58][39m [34m[Info][39m Executing once event: ready.ts
+[90m[16:37:58][39m [32m[OK][39m 🗄️ TypeORM connecté à PostgreSQL
+[90m[16:37:58][39m [33m[Warning][39m Attempting to register application commands... (this might take a while!)
+[90m[16:37:58][39m [33m[Warning][39m Toutes les commandes existantes ont été supprimées globalement.
+[90m[16:37:58][39m [32m[OK][39m Successfully registered application commands. For specific guild? Yes
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Admin\sc-ban.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Admin\sc-kick.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Admin\sc-mute.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Basique\sc-ping.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Basique\sc-server-info.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Button\Roles\sc-add-btn-roles.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Button\Roles\sc-delete-btn-roles.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Channel\sc-lock-channel.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Channel\sc-setup-channel-generator.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Developper\sc-getclient.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Developper\sc-reload.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Users\sc-user-info.ts
+[90m[16:38:07][39m [34m[Info][39m Loaded new application command: src\commands\Users\sc-view-avatar.ts
+[90m[16:38:07][39m [32m[OK][39m Successfully loaded 13 application commands and 0 message commands.
