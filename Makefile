@@ -13,6 +13,7 @@ help:
 	@echo "  make stop     - Arrete les services"
 	@echo "  make logs     - Affiche les logs du bot"
 	@echo "  make db-logs  - Affiche les logs de la base de donnees"
+	@echo "  make start-only-db - Demarre la base de donnees"
 	@echo "  make clean    - Nettoie les conteneurs et images"
 	@echo "  make restart  - Redemarre les services"
 	@echo "  make status   - Affiche le statut (uptime) des services"

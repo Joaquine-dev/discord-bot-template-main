@@ -1,30 +1,35 @@
-[INFO] [Bot loaded].
-[11:13:41 AM] [Warning] Attempting to connect to the Discord bot... (1)
-[11:13:41 AM] [Info] Loaded new application command: sc-ban.ts
-[11:13:41 AM] [Info] Loaded new application command: sc-kick.ts
-[11:13:41 AM] [Info] Loaded new application command: sc-mute.ts
-[11:13:41 AM] [Info] Loaded new application command: sc-setup-channel-generator.ts
-[11:13:41 AM] [Info] Loaded new application command: sc-getclient.ts
-[11:13:41 AM] [Info] Loaded new application command: sc-reload.ts
-[11:13:41 AM] [OK] Successfully loaded 6 application commands and 0 message commands.
-[11:13:41 AM] [OK] Successfully loaded 0 components.
-[11:13:41 AM] [Info] Registering event: ready.ts with event type: ready
-[11:13:41 AM] [Info] Loaded new event: ready.ts
-[11:13:41 AM] [Info] Registering event: guildMemberAdd.ts with event type: guildMemberAdd
-[11:13:41 AM] [Info] Loaded new event: guildMemberAdd.ts
-[11:13:41 AM] [Info] Registering event: guildMemberRemove.ts with event type: guildMemberRemove
-[11:13:41 AM] [Info] Loaded new event: guildMemberRemove.ts
-[11:13:41 AM] [Info] Registering event: guildMemberUpdate.ts with event type: guildMemberUpdate
-[11:13:41 AM] [Info] Loaded new event: guildMemberUpdate.ts
-[11:13:41 AM] [Info] Registering event: VoiceStateUpdate.ts with event type: voiceStateUpdate
-[11:13:41 AM] [Info] Loaded new event: VoiceStateUpdate.ts
-[11:13:41 AM] [OK] Successfully loaded 5 events.
-[11:13:41 AM] [OK] Successfully loaded 0 reactions.
-[11:13:43 AM] [Info] Executing once event: ready.ts
-[11:13:43 AM] [OK] 🗄️ TypeORM connecté à PostgreSQL
-[11:13:43 AM] [Warning] Attempting to register application commands... (this might take a while!)
-[11:13:43 AM] [Warning] Toutes les commandes existantes ont été supprimées globalement.
-[11:13:43 AM] [OK] Successfully registered application commands. For specific guild? Yes
-[11:13:44 AM] [Error] Erreur lors de la création/récupération de l'utilisateur joaquine83: QueryFailedError: column User.xp does not exist
-[11:13:44 AM] [Error] Erreur lors de la création/récupération de l'utilisateur joaquine: QueryFailedError: column User.xp does not exist
-[11:13:44 AM] [Error] Erreur lors de la création/récupération de l'utilisateur Joa_DEV: QueryFailedError: column User.xp does not exist
+[34m[INFO][39m [Bot loaded].
+[90m[14:53:49][39m [33m[Warning][39m Attempting to connect to the Discord bot... (1)
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-ban.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-kick.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-mute.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-ping.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-server-info.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-add-btn-roles.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-delete-btn-roles.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-lock-channel.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-setup-channel-generator.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-getclient.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-reload.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-user-info.ts
+[90m[14:53:49][39m [34m[Info][39m Loaded new application command: sc-view-avatar.ts
+[90m[14:53:49][39m [32m[OK][39m Successfully loaded 13 application commands and 0 message commands.
+[90m[14:53:49][39m [34m[Info][39m Loaded new component (type: button) : roles.ts
+[90m[14:53:49][39m [32m[OK][39m Successfully loaded 1 components.
+[90m[14:53:49][39m [34m[Info][39m Registering event: ready.ts with event type: ready
+[90m[14:53:49][39m [34m[Info][39m Loaded new event: ready.ts
+[90m[14:53:49][39m [34m[Info][39m Registering event: guildMemberAdd.ts with event type: guildMemberAdd
+[90m[14:53:49][39m [34m[Info][39m Loaded new event: guildMemberAdd.ts
+[90m[14:53:49][39m [34m[Info][39m Registering event: guildMemberRemove.ts with event type: guildMemberRemove
+[90m[14:53:49][39m [34m[Info][39m Loaded new event: guildMemberRemove.ts
+[90m[14:53:49][39m [34m[Info][39m Registering event: guildMemberUpdate.ts with event type: guildMemberUpdate
+[90m[14:53:49][39m [34m[Info][39m Loaded new event: guildMemberUpdate.ts
+[90m[14:53:49][39m [34m[Info][39m Registering event: VoiceStateUpdate.ts with event type: voiceStateUpdate
+[90m[14:53:49][39m [34m[Info][39m Loaded new event: VoiceStateUpdate.ts
+[90m[14:53:49][39m [32m[OK][39m Successfully loaded 5 events.
+[90m[14:53:49][39m [32m[OK][39m Successfully loaded 0 reactions.
+[90m[14:53:50][39m [34m[Info][39m Executing once event: ready.ts
+[90m[14:53:50][39m [32m[OK][39m 🗄️ TypeORM connecté à PostgreSQL
+[90m[14:53:50][39m [33m[Warning][39m Attempting to register application commands... (this might take a while!)
+[90m[14:53:50][39m [33m[Warning][39m Toutes les commandes existantes ont été supprimées globalement.
+[90m[14:53:50][39m [32m[OK][39m Successfully registered application commands. For specific guild? Yes

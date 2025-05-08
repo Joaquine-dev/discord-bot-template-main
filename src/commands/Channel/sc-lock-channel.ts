@@ -1,7 +1,9 @@
-import { ApplicationCommandOptionType, ChannelType, GuildMember, Interaction, PermissionsBitField, GuildChannel, PermissionFlagsBits } from "discord.js";
+import { ApplicationCommandOptionType, ChannelType, GuildMember, Interaction, PermissionsBitField, GuildChannel, PermissionFlagsBits, Guild } from "discord.js";
 import DiscordBot from "@client/DiscordBot";
 import ApplicationCommand from "@structure/ApplicationCommand";
 import { canAction } from "@/job/userAction";
+import { LogsService } from "@/services/LogsService";
+import { Action } from "@/entity/Logs";
 
 module.exports = new ApplicationCommand({
     command: {
@@ -38,29 +40,23 @@ module.exports = new ApplicationCommand({
         if (channel.type !== ChannelType.GuildVoice && channel.type !== ChannelType.GuildText) {
             return interaction.reply({ content: 'Ce salon doit être un salon vocal ou textuel', ephemeral: true });
         }
-
-        // Vérifier si le salon est déjà verrouillé
         const currentPerms = channel.permissionsFor(interaction.guild.roles.everyone);
         const isLocked = currentPerms?.has(channel.type === ChannelType.GuildVoice ? PermissionFlagsBits.Connect : PermissionFlagsBits.SendMessages) === false;
-
         try {
-            // Définir les permissions pour @everyone
             await channel.permissionOverwrites.edit(interaction.guild.roles.everyone, {
                 [channel.type === ChannelType.GuildVoice ? 'Connect' : 'SendMessages']: isLocked,
             });
-
-            // Si on verrouille, on s'assure que les modérateurs peuvent toujours envoyer des messages
             if (!isLocked) {
                 const modRole = interaction.guild.roles.cache.find(role => 
                     role.permissions.has(PermissionFlagsBits.ModerateMembers)
                 );
-                
                 if (modRole) {
                     await channel.permissionOverwrites.edit(modRole, {
                         [channel.type === ChannelType.GuildVoice ? 'Connect' : 'SendMessages']: true,
                     });
                 }
             }
+            await LogsService.createLog(client, interaction.guild as Guild, interaction.member as GuildMember, member as GuildMember, isLocked ? Action.UNLOCK : Action.LOCK, `Le salon ${channel.name} a été ${isLocked ? 'déverrouillé' : 'verrouillé'} ${reason ? `pour la raison: ${reason}` : ''} par ${interaction.user.username}`);
 
             return interaction.reply({ 
                 content: `Le salon ${channel} a été ${isLocked ? 'déverrouillé' : 'verrouillé'} ${reason ? `pour la raison: ${reason}` : ''}`,

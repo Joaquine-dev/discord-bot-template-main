@@ -9,6 +9,8 @@ export enum Action {
   MUTE = "mute",
   UNMUTE = "unmute",
   DISCONNECT = "disconnect",
+  LOCK = "lock",
+  UNLOCK = "unlock",
 }
 
 @Entity()
