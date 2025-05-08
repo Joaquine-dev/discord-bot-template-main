@@ -21,13 +21,13 @@ export default new Component({
         const member = interaction.member as GuildMember;
         if (!member) return;
 
+        
         try {
             const role = await interaction.guild?.roles.fetch(roleId);
             if (!role) {
                 await interaction.reply({ content: "Ce rôle n'existe plus.", ephemeral: true });
                 return;
             }
-
             if (member.roles.cache.has(roleId)) {
                 await member.roles.remove(roleId);
                 await interaction.reply({ content: `Le rôle ${role.name} vous a été retiré.`, ephemeral: true });

@@ -71,8 +71,6 @@ module.exports = new ApplicationCommand({
         });
 
         let added = false;
-
-        // Cherche une ligne avec de la place (<5 boutons)
         for (const row of components) {
             if (row.components.length < 5) {
                 row.addComponents(newButton);
@@ -80,8 +78,6 @@ module.exports = new ApplicationCommand({
                 break;
             }
         }
-
-        // Si aucune ligne dispo, en créer une nouvelle
         if (!added) {
             if (components.length >= 5) {
                 return interaction.reply({ content: 'Le message a atteint la limite maximale de boutons.', ephemeral: true });
