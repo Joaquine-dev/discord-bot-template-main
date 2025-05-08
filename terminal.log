@@ -34,3 +34,5 @@
 [90m[18:48:54][39m [34m[Info][39m Executing once event: ready.ts
 [90m[18:48:54][39m [32m[OK][39m 🗄️ TypeORM connecté à PostgreSQL
 [90m[18:48:54][39m [33m[Warning][39m Attempting to register application commands... (this might take a while!)
+[90m[18:49:42][39m [33m[Warning][39m Toutes les commandes existantes ont été supprimées globalement.
+[90m[18:49:43][39m [32m[OK][39m Successfully registered application commands. For specific guild? Yes
